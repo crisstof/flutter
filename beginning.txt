@@ -1,0 +1,25 @@
+Installation de Flutter:
+installation du sdk: https://docs.flutter.dev/get-started/install/windows
+Installer flutter plutôt à la racine du disque.
+Mise à jour de votre chemin si vous exécuter les commandes flutter dans la console windows.
+saisissez "env" dans la barre de recherche
+dans Path ajouter le chemin "C:\Flutter\flutter\bin"
+where.exe flutter dart 
+   C:\Flutter\flutter\bin\flutter
+   C:\Flutter\flutter\bin\flutter.bat
+   C:\Flutter\flutter\bin\dart
+   C:\Flutter\flutter\bin\dart.bat
+C:\src\flutter>flutter doctor
+il demande d'installer Android studio et Visual studio
+https://developer.android.com/studio/index.html
+https://visualstudio.microsoft.com/downloads/.
+Télécharger Android Studio: https://developer.android.com/studio
+Télécharger Visual Studio : https://visualstudio.microsoft.com/fr/downloads/
+
+Problème de l'installation:
+1) Dans Android studio>tools>sdkmanager>sdktools>Android SDK Command Line Tools (latest)
+2) flutter ne trouve pas Android Studion dans C:\Program
+: flutter config --android-studio-dir "C:\Program Files\Android\Android Studio"
+3) Installer dans VIsual Studion Installer settings le C++ desktop
+4/ android-licences? flutter doctor --android-lisense  //et pas licences
+
