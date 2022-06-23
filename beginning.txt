@@ -1,3 +1,5 @@
+---------------------------------INSTALLATION--------------------------------------------------------
+
 Installation de Flutter:
 installation du sdk: https://docs.flutter.dev/get-started/install/windows
 Installer flutter plutôt à la racine du disque.
@@ -22,4 +24,18 @@ Problème de l'installation:
 : flutter config --android-studio-dir "C:\Program Files\Android\Android Studio"
 3) Installer dans VIsual Studion Installer settings le C++ desktop
 4/ android-licences? flutter doctor --android-lisense  //et pas licences
+
+
+Utiliser visual studio avec l'extension Flutter (Dart Code)
+on se sert de xcode ou visual studio et android studio pour l'installation et pour la publication sur les store
+Code en DART tout est dedans et tout est widget dans flutter.
+chaque page est un fichier DART
+
+
+----------------Getting start---------------------------------------------------------------------
+>flutter create flutter_app //génère une application représentant un fichier lib
+				//pour le simulateur macos il faut xcode avec le système macos (macbook)
+
+Pour IOS:
+open -a simulator (xcode grace au sdk) flutter run //ouvre l'application
 
