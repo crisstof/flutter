@@ -1,0 +1,154 @@
+*******************************************************************************
+******Flutter (google)*********************************************************
+*******************************************************************************
+Dartpad: https://dartpad.dev/?id=e75b493dae1287757c5e1d77a0dc73f1
+Samples/counter
+-----------------counter-------------------------------------------------------
+// Copyright (c) 2019, the Dart project authors.  Please see the AUTHORS file
+// for details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
+
+import 'package:flutter/material.dart';
+
+void main() => runApp(MyApp()); //= void main() {return runApp(MyApp());}
+
+class MyApp extends StatelessWidget { //en flutter tout est widget (petite brique)
+  @override  //on réécrit la fonction build 
+  Widget build(BuildContext context) {
+    return MaterialApp( //class qui modelise une application (titre ...)
+      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false, //affiche banniere de debut
+      theme: ThemeData(
+        primarySwatch: Colors.blue,  //affiche du bleu
+      ),
+      home: const MyHomePage(title: 'Flutter Demo Home Page'), //constructeur avec le titre
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget { //page dynamique
+  final String title;
+
+  const MyHomePage({
+    Key? key,
+    required this.title,
+  }) : super(key: key);
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();//on doit avoir un state un état 
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  int _counter = 0;
+
+  void _incrementCounter() { //méthode privé car _
+    setState(() {
+      _counter++;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(  //on va dire que c'est une page
+      appBar: AppBar(  //clase dans des classe 
+        title: Text(widget.title),  //paramutre nommé qui prend un text pour le count
+      ),
+      body: Center(
+        child: Column( //quesqu'on affiche de son centre à Center une colonne qui prend
+          mainAxisAlignment: MainAxisAlignment.center, //pour centré tout dans la colonne
+          children: [ //qu'est ce qu'il va avoir dans la colonne
+            const Text(
+              'You have pushed the button this many times:',
+            ),
+            Text(
+              '$_counter',
+              style: Theme.of(context).textTheme.headline4,
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _incrementCounter,
+        tooltip: 'Increment',
+        child: const Icon(Icons.add),
+      ),
+    );
+  }
+}
+-------------------------------------------------------------------------------------
+Les STATES MANAGER ??  on a besoin de mettre à jour nos widgets
+2 types : 
+->Ephémère (il a besoin de se mettre à jour tout seul) 
+class MyHomePage extends StatefulWidget { //StatefulWidget  un widget qui va permettre de se modifier
+ou plutôt
+class _MyHomePageState extends State<MyHomePage> {
+qui augmente le compteur
+setState(() { //on ordonne le widget de se recréé après avoir exécuter ce qu'il y a à l'intérieur
+      _counter++;  //après on réfréchit le widget
+
+
+->AppState  (entraîne plusieurs widgets à se réactualiser) [une page modifie des variables de cette page et des autre si on retourne sur d'autres pages]
+Il utilise les librairies (provider,Riverpod, Redux, BLoc, GetX, Binder, MobX & GettIt)
+
+PROVIDER:
+----------
+Provider (recommander pour celui qui commence)
+return MultiProvider( //définit nos provider (objet pour définir l'état de notre application)
+     providers: [
+        Provider(create: (context) => ColorListModel()), //1 provider pour lister les couleur
+        ChangeNotifierProvider(create: (context) => ProviderSettingsModel())
+     ],
+child: MaterialApp( ...
+
+
+le provider ProviderSettingsModel() est une class ProviderSettingsModel() extends ChangeNotifier {
+Le ChangeNotifier on va pouvoir notifier les widget qu'ils l'écoutent 
+Item? _colorSelected
+
+Color get colorSelected => _colorSelected?.color ?? Colors.blue;
+Color get colorSelectedName => _colorSelected?.name ?? "blue";
+
+void updateColorSelected(Item color){ //on met à jour
+  _colorSelected = color;
+  notifyListeners(); //on appel le notifyListeners
+}
+La page qui écoute le Consumer
+Widget build (BuildContext context) {
+  return Consumer<ProviderSettingsModel>(  //on va consommer la nouvelle valeur à chaque changement
+   builder: (context, settings, child) {
+     return Scaffold(
+        appBar: AppBar (
+              backgroundColor: settings.colorSelected,  //la nouvelle couleur
+              title: Text("Provider Screen"),
+              actions: [
+                IconButton(
+                 onPressed: () {
+                 Navigator.pop
+                }, ...
+                         TextButton(
+                          onPressed: () {     //pour modifier la valeur récupère le provider
+     pour le bouton on fait var settings = context.read<ProviderSettingsModels>();
+                            settings.updateColorSelected(item);
+                          },
+                        
+
+RIVERPOD: ProviderScope  notifier et un consumer et un watch (un plus simple) et un notifyListener (sans ce multiprovider
+--------
+
+REDUX:----plus de chose----
+------
+un StoreProvider avec un AppReducer et définir un AppState avec une action et par notifier
+
+
+Bloc: beaucoup l'utilise (englober le widget) BlocProvider et SettingCubit
+----
+GetX: beaucoup aussi l'utilise 
+----
+MobX: c'est un singleton (création d'une classe abstraite ...) et @action et setting
+-----
+
+
+
+
+
+

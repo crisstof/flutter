@@ -112,7 +112,7 @@ Recipient recipe = Recipient(name :"brownie",
             		     ingredients : ["oeuf", "farine", "sucre"],
 			      steps :  ["Etape 1", "Etape 2", "Etape 3"]);
 
-print(recipient.name);
+print(recipe.name);
 
 }
 
@@ -127,7 +127,45 @@ Recipient({required this.name,required  this.ingredients,required  this.steps});
 
 }
 
+Héritage:
+--------
+class Recipient{
+ String name;
+ List<String> ingredients;
+ List<String> steps;
+String type;
+ //constructeur
+Recipient({required this.name,required  this.ingredients,required  this.steps, required this.String (type});
 
+  String formatIngredients(){
+    String result = "";
+    for(int i=0; i<ingredients.length;i++)
+    {
+      var isLast = 1 != ingredients.length-1;
+      result += ingredients[1] + (isLast ? "," : "");
+    }
+
+  }
+-------------pour héritage le main change-------------
+void main(){
+Dessert recipe = Dessert (name :"brownie",
+            		     ingredients : ["oeuf", "farine", "sucre"],
+			      steps :  ["Etape 1", "Etape 2", "Etape 3"]);
+
+print(recipe.type()); //=>affiche Dessert ou formatIngredients() => oeuf, farine, sucre
+
+}
+
+
+------------------------------------------------------
+
+  class Dessert extends Recipient {
+    Dessert({({required String name, required  List<string> ingedients,required  List<String> Steps}) : super(name:name, ingredients:ingredients, steps:steps, type:"Dessert");
+
+
+  }
+  
+}
 
 
 
