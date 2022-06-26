@@ -1,0 +1,144 @@
+******************************************************
+******LANGUAGE DART (google)**************************
+******************************************************
+le langage DART est à l'origine de flutter qui peut 
+créer des applications mobiles, de bureau, de serveur et web.
+Flutter est un framework version stable le 4 décembre 2018.
+version web et desttop le 3 mars 2021.
+En ligne: https://dartpad.dev/?
+Initiation:
+----------
+
+void main() {
+
+//typage fort donc on ne peut pas changer le type name=5 (error)
+String name = "hello world";
+int nbPerson = 6;
+double gramme = 21.5; //float
+bool isFavorite = true;
+
+//pour avior un type automatique il regarde après le égale:
+//produit la même chose
+var name = "hello world"; var nbPerson = 6; var gramme = 21.5; var isFavorite = true;
+
+//le null safety, initialise null une variable
+String? name;  //donne null sinon erreur avec String name;
+
+
+//affichage
+print( "nombre de personne" + nbPerson.toString());
+print( "nombre de personne $nbPerson");
+print( "nombre de personne ${nbPerson + gramme}");
+
+}
+
+
+Les listes de même type:
+-----------------------
+List<String> ingrediants = [];  OU var ingredients = ["chocolat", "farine"];
+ingredients.add("chocolat");
+ingredients.add("farine");
+print(ingredients);
+
+Set<String> ingedients = ["chocolat", "chocolat", "farine"] //en print n'affiche pas les doublons
+Set<String> ingedients = Set();
+ingredients.add("chocolat");
+
+Les MAP/hashmap (ensemble de clé/valeur):
+----------------------------------------
+Map <String, double> ingredients = {
+	"chocolat": 266.5;
+	"Farine": 66.5
+};
+ingerdients.values ..find ...
+print(ingredients); //=>{chocolat: 266.5, Farine: 66.5}
+print(ingredients["chocolat"]); //=>266.5
+
+Les conditions:
+--------------
+//if else if else
+if(step==3) {  ...} else if (...) {   } ....
+//opération ternaire
+String nameToPrint = name != null name : "Guest user"; // print(nameToPrint)
+ si différent de null affiche name sinon Guest user  
+//for
+for (int i=0; i<ingredients.length; i++) {
+   print(ingredients[i]);
+}
+même chose que:
+for (var ingredient in ingredients) {
+   print(ingredient);
+}
+//while
+var i =0;
+while(i<ingredients.length && ingredients[i] != "beurre" ){
+  print(ingredients[i];
+  i++;
+}
+
+
+Les fonctions:
+--------------
+
+(fonction avec paramètre nommé)
+void main() {
+  print(getSteps(nbSteps : 3, prefix : "Etape")); //=>Etape1  Etape 2 Etape 3
+}
+                                         //String prefix = "Etape"  //valeur par défaut donc plus null ou [String prefix = "Etape"]
+String getSteps({required int nbSteps, required String prefix}) //required gère le null sinon int? et gérer le null dans la fonction
+{
+ var result = "";
+ for(int i=0; i<nbSteps; i++){
+   result += "$prefix ${i + 1}\n";
+ }
+ return result;
+}
+
+fonction sur une seule ligne:
+int getNbSteps(int nbIngredient){
+ return nbIngredient *2;
+}
+on utilise int getNbSteps(int nbIngredient) => return nbIngredient *2;
+
+Les Classes:
+-----------
+
+void main(){
+Recipient recipe = Recipient("brownie",
+            			["oeuf", "farine", "sucre"],
+			      ["Etape 1", "Etape 2", "Etape 3"]);
+//avec paramètre nommé donc tout le temps avec flutter
+Recipient recipe = Recipient(name :"brownie",
+            		     ingredients : ["oeuf", "farine", "sucre"],
+			      steps :  ["Etape 1", "Etape 2", "Etape 3"]);
+
+print(recipient.name);
+
+}
+
+class Recipient{
+ String name;
+ List<String> ingredients;
+ List<String> steps;
+ //constructeur
+Recipient(this.name, this.ingredients, this.steps);
+ //mieux le constructeur en paramètre nommé
+Recipient({required this.name,required  this.ingredients,required  this.steps});
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
