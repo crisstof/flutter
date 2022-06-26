@@ -1,0 +1,52 @@
+ARCHITECTURES APPLICATIONS
+Le model c'est les données ou la donnée
+
+MVC (Model View Controller): Model Vue Controller
+ToDoList
+View(application) ----> Ajouter un todo ----->Controller -----Manipule la liste ----> Model(todo list)---
+        |______________Notifie qu'elle est modifiée_____________________________________________________|
+sur android il est de base XML(la vue) + code java ou kotlin (Controller) + la données (Model)
+
+MVP (Model View Presenter): Model Presenter  View
+Model<------->Presenter<---------->View
+La view demande au Presenter de présenter les données et le Presenter demande au Model
+de lui donner les données pour les présenters et notifier la vue pour la voir.
+La vue n'a pas connaissance du model elle demande au presenter
+ToDoList
+View(application) ----Ajouter un todo----->Presenter  ---manipule la liste-------------> Model(todo list)---
+                  <--Modifie la vue--------           <---Notifie qu'elle est modifiée---   
+facile à tester car le test est sur le Presenter
+
+MVVM (Model View View-Model): 
+le View-Model va modifier le Model pour qu'il soit facilement utilisable par la vue
+le client (Vue) du restaurant demande au cuisinier (Vue-model) un burger et la cuisine Les ingrédients
+et la vue veut juste le burger et pas les ingrédients
+ToDoList
+View(application) ----demande une liste---------->ViewModel ---manipule la liste pour récupérer ce qui est demandé------> Model(todo list)---
+                  <--envoie la liste modifiée-----         <---Notifie qu'elle est modifiée------------------------------   
+La View affiche la description et pas la todo list
+
+Clean architecture : Data <---> Domain <----> Presenter
+    Fabricant-chocolat <--->Emballe-chocolat<-->vendeur-chocolat
+
+| Web DB---UI               Interface graphique (bouton pour ajouter) demande au controleur (presenter)
+|
+|Repositorie  Presenter
+|
+|  Use Cases              Gérer la todo list
+|
+|  Entities               c'est une todo (description d'une date lieu et on remonte 
+C'est à dire le Use Case remont au repositorie qui l'ajouter à la base de données local ou serveur
+la BD répond j'ai bien ajouté la description il renvoie à la repositories qui renvoie au USE Cases puis au presenter et à l'UI.
+cela permet de bien séparer l'architecture elle peut intégrer les autres architectures imbrication.
+
+
+
+****D'autres Architectures existent *******************
+
+
+
+
+
+
+
