@@ -1,0 +1,381 @@
+flutter create applilead  [création du projet]
+test/widget_test.dart commenter la partie dans le bloc async{ comment}
+
+1 partie:
+------------------------------------------------------------------
+lib/main.dart
+void main() => runApp(App());
+
+class App extends StatelessWidget {
+  const App({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false, //cache bandeau debug
+      title: 'Flutter Demo',
+      home: AuthScreen(),
+    );
+  }
+}
+-------------------------------------------------------------------
+lib/screens/Auth.dart
+import 'package:flutter/material.dart';
+
+class AuthScreen extends StatefulWidget {
+  AuthScreen({Key? key}) : super(key: key);
+
+  @override
+  State<AuthScreen> createState() => _AuthScreenState();
+}
+
+class _AuthScreenState extends State<AuthScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+------------------------------------------------------------------
+class _AuthScreenState extends State<AuthScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return const SafeArea(
+      child: Scaffold(
+        body: Center(
+          child: Text('Coucou'),
+        ),
+      ),
+    );
+  }
+}
+------------------------------------------------------------------
+au lieu de child:
+ child: Column(
+            children: [
+              Text('Everyone has knowledge to share'),
+              Text('It all starts here.'),
+              SizedBox(
+                height: 50.0,
+              ),
+              Text('Enter your email')
+            ],
+          ),
+------------------------------------------------------------------
+pour body: Center( !!!!!!!!!on a notre première vue:!!!!!! Titre un TextBox pour entrer notre email et un button de validation d'envoie.
+ body: Center(
+          child: SingleChildScrollView(
+            padding: EdgeInsets.symmetric(horizontal: 30.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                RichText(
+                  text: TextSpan(
+                    text: 'Everyone has \n'.toUpperCase(),
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 30.0,
+                    ),//textStyle
+                    children: [
+                      TextSpan(
+                        text: 'knowledge \n'.toUpperCase(),
+                        style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                          fontWeight: FontWeight.bold,
+                        ), //TextStyle
+                      ), //Textspan
+                      TextSpan(
+                        text: 'to share'.toUpperCase(),
+                      ), //Textspan
+                    ],
+                  ), //Textspan
+                ), //RichText
+                Text(
+                  'It all starts here.',
+                  style: TextStyle(
+                    fontStyle: FontStyle.italic,
+                  ),
+                ),
+                SizedBox(
+                  height: 50.0,
+                ),
+                Form(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text('Enter your email'),
+                      SizedBox(
+                        height: 10.0,
+                      ), //SizedBox
+                      TextFormField(
+                        decoration: InputDecoration(
+                          hintText: 'Ex: john.deo@domain.tld',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(0.0),
+                            borderSide: BorderSide(
+                              color: Colors.grey,
+                            ), //BorderSide
+                          ), //OutlineInputBoder
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(0.0),
+                            borderSide: BorderSide(
+                              color: Colors.grey,
+                            ), //BorderSide
+                          ), //OutlineInputBoder
+                        ),  //InputDecoration
+                      ),  //TextFormFiled
+                      SizedBox(
+                        height: 10.0,
+                      ), //SizedBox
+                      ElevatedButton(
+                        onPressed: () => print('send'),
+                        child: Text(
+                          'continue'.toUpperCase(),
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),  //TextStyle
+                        ), //Text
+                      ), //ElevatedButton
+                    ],
+                  ), //Column
+                ) //Form
+              ],
+            ), //Column
+          ), //SinggleChildScrollView
+        ), //center
+--------------------------------------------------------------------------------------------------------------
+La deuxième vue pour les condition générale à accepter!!!
+screens/guest/Term.dart en StatefulWidget au nom de TermScreen et on le déclare dans le main à la place de authScreen.
+
+<- Term condition
+conditions générales
+
+     bouton accept
+-----------------------------------------------------
+// ignore: file_names
+import 'package:flutter/material.dart';
+
+class TermScreen extends StatefulWidget {
+  TermScreen({Key? key}) : super(key: key);
+
+  @override
+  State<TermScreen> createState() => _TermScreenState();
+}
+
+class _TermScreenState extends State<TermScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        body: Center(
+          child: Text('Coucou'),
+        ),
+      ),
+    );
+  }
+}
+-----------  <- Terms & Conditions entre Scaffold et body: Center(-------------------------------------------
+ child: Scaffold(
+        appBar: AppBar(
+          titleSpacing: 0.0,
+          elevation: 0.0,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+          title: Text(
+            'Terms & Conditions',
+            style: TextStyle(color: Colors.black),
+          ),
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            color: Colors.black,
+            onPressed: () {},
+          ),
+        ),
+        body: Center(
+-------------------------------------------------------------------------------------------------------------
+centrer les conditions et le bouton accept:
+------------------------------------------
+ body: Padding(
+          padding: const EdgeInsets.only(
+            left: 20.0,
+            right: 20.0,
+            bottom: 10.0,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Expanded(child: SingleChildScrollView(
+                physics: AlwaysScrollableScrollPhysics(),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text("conditions générales"),
+                  ],
+                ),
+              ),)
+              SizedBox(
+                height: 10.0,
+              ),
+              RaisedButton(
+                padding: EdgeInsets.symmetric(
+                  vertical: 15.0,
+                ),
+                color: Theme.of(context).primaryColor,
+                elevation: 0.0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(0.0),
+                ),
+                onPressed: () => print('accept'),
+                child: Text(
+                  'accept & continue'.toUpperCase(),
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+-------------Nous avons fini avec un text en scrollView------------------
+---------------------------------------------------------------------------------------------
+Nous passons à la vue du mot de passe!!!!!!!!!!
+---------------------------------------------------------
+// ignore: file_names
+import 'package:flutter/material.dart';
+
+class PasswordScreen extends StatefulWidget {
+  PasswordScreen({Key? key}) : super(key: key);
+
+  @override
+  State<PasswordScreen> createState() => _PasswordScreenState();
+}
+
+class _PasswordScreenState extends State<PasswordScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+-----------------------------------------------------------
+// ignore: file_names
+import 'package:flutter/material.dart';
+
+class PasswordScreen extends StatefulWidget {
+  PasswordScreen({Key? key}) : super(key: key);
+
+  @override
+  State<PasswordScreen> createState() => _PasswordScreenState();
+}
+
+class _PasswordScreenState extends State<PasswordScreen> {
+  bool isSecret = true;
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          titleSpacing: 0.0,
+          elevation: 0.0,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            color: Colors.black,
+            onPressed: () {},
+          ),
+        ),
+        body: Center(
+          child: SingleChildScrollView(
+            padding: EdgeInsets.symmetric(
+              horizontal: 30.0,
+            ),
+            child: Column(
+              children: [
+                Text(
+                  'password'.toLowerCase(),
+                  style: TextStyle(
+                    fontSize: 30.0,
+                  ),
+                ),
+                SizedBox(
+                  height: 50.0,
+                ),
+                Form(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text('Enter your password'),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      TextFormField(
+                        obscureText: isSecret,
+                        decoration: InputDecoration(
+                          suffixIcon: InkWell(
+                            onTap: () => setState(() => isSecret = !isSecret),
+                            child: Icon(
+                              !isSecret
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                            ),
+                          ),
+                          hintText: 'Ex: trhyerthy',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(0.0),
+                            borderSide: BorderSide(
+                              color: Colors.grey,
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(0.0),
+                            borderSide: BorderSide(
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      ElevatedButton(
+                        onPressed: () => print('send'),
+                        child: Text(
+                          'continue'.toUpperCase(),
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+-------------------------------======================------------------------------------------
+Maintenant on passe les appelles de vue!!!  suite authentification et lien pour les vues 
+https://www.youtube.com/watch?v=oaKpdSS2YuU&ab_channel=NicoDevelop-D%C3%A9veloppeurWebetmobile
+1h20
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+----------Sources--------------------------------------------------------------------------------------------
+
+https://github.com/bynicodevelop/leadee
+https://www.youtube.com/watch?v=oaKpdSS2YuU&ab_channel=NicoDevelop-D%C3%A9veloppeurWebetmobile

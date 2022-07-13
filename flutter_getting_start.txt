@@ -1,0 +1,82 @@
+Structure de programmation avec Flutter
+----------------------------------------
+Nous avons une fonction main() //principale
+qui exécute runApp une classe MyApp() inclus dans le package 
+#import 'package:flutter/material.dart'
+important tout les éléments google (interface graphique, variable, widget ...par défaut)
+on va pouvoir coder nos propre widget par l'intermédiaire de StatlessWidget ou statefulWidget.
+
+la class MyApp est particulière par rapport aux autres qui doivent se ressembler.
+elle build du code et flutter tout est imbrication de widget.
+Widget build(BuildContext context) //ce widget prend en compte le context comme les provider.
+Ce qui permet de savoir l'état du widget sur lequel on se trouve et on le transmet à d'autre widget.
+
+return MaterialApp c'est une librairie permet de définir l'application global (title, theme, home...)
+elle structure l'architecture de l'application.
+home c'est la classe de base on va mettre les différentes actions, interfaces
+
+la class MyHomePage qui est un StatefulWidget qui permet d'avoir un état spécifique sue le widget courant.
+ MyHomePage({Key? key, required this.title})
+cela permet d'avoir une key pour identifier chacun des widgets, un titre.
+et la mise en place de notre état createState: State<MyHomePage> createState() => _MyHomePageState();
+
+Celle si appelle une classe privée _MyHomePageState()
+  il y a une fonction qui incrémente le compteur
+  il y a aussi le build 
+
+
+----------------------------------------------------------------------------------------------
+Petite présentation on efface et on fait:
+void main() => runApp(App());
+widget (carré) StatelessWidget avec le nom App
+   on appelle home: Home(), et avant le return on insère:
+   debugShowCheckedModeBanner: false, //pour faire disparaitre la bandeau debug
+
+widget StatefulWidget avec le nom Home
+  dans le container child: Text('hello world'),
+
+mais à la place de return Container on va appeler Scaffold() //permet de mettre la base de notre application.
+ Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        child: Text("hello world")
+        ),
+    );
+  }
+pour mettre la barre grise de l'heure tout en haut le widget safeArea
+ Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text("application"),//barre bleu avec titre
+        ),
+        body: Container(
+          child: Text('hello coucou'),
+        ),
+      ),
+    );
+  }
+
+************************************************************************************
+Mais nous mettons pas tout dans le main on va structurer nos répertoire
+dans lib/
+         screens/
+                 Home.dart (colle la classe Home, _HomeState) importer le package material.dart
+                                                               ampoule home
+puis dans main.dart sur Home() (ctrl + espace) pour importer le package Home.dart
+
+Et voila nous avons déplacer du code dans une autre fichier pour structurer les répertoires.
+*************************************************************************************
+
+
+
+
+
+
+
+
+
+  
+
+
+

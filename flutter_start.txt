@@ -1,0 +1,20 @@
+***********FLUTTER LANGAGES**************
+StatefulWidget permet de changer les états de la vue courante. (des éléments vont pouvoir être modifiés)
+on change l'état avec un setState comme par exemple:
+TextFormField(
+                        obscureText: isSecret,
+                        decoration: InputDecoration(
+                          suffixIcon: InkWell(
+                            onTap: () => setState(() => isSecret = !isSecret),
+                            child: Icon(
+                              !isSecret
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                            ),
+                          ),
+
+SafeArea prend tout mon écran et du bandeau heure
+Scaffold permet d'avoir la barre des tâches
+
+
+crossAxisAlignment: CrossAxisAlignment.stretch permet au Form de prendre toute la largeur

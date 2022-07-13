@@ -21,21 +21,40 @@ Télécharger Visual Studio : https://visualstudio.microsoft.com/fr/downloads/
 Problème de l'installation:
 1) Dans Android studio>tools>sdkmanager>sdktools>Android SDK Command Line Tools (latest)
 2) flutter ne trouve pas Android Studion dans C:\Program
-: flutter config --android-studio-dir "C:\Program Files\Android\Android Studio"
+   : flutter config --android-studio-dir "C:\Program Files\Android\Android Studio"
 3) Installer dans VIsual Studion Installer settings le C++ desktop
 4/ android-licences? flutter doctor --android-lisense  //et pas licences
 
+Fin de android studio: Créer un avd dans android studio pour un émulateur de mobile.
 
 Utiliser visual studio avec l'extension Flutter (Dart Code)
 on se sert de xcode ou visual studio et android studio pour l'installation et pour la publication sur les store
 Code en DART tout est dedans et tout est widget dans flutter.
 chaque page est un fichier DART
-
+Plugin de VSCode:
+Flutter (émulateru, hotreload ...)
+Awesome Flutter snippets (permet des raccourcis)
+autosave (enregistre quand on change d'onglet)
+---------------------
+commande flutter:
+flutter --version
+flutter channel   #master dev beta stable (appli web sur beta ou dev)
+flutter channel master #switch sur master
+flutter create . #crée l'application dans notre dossier 
+flutter doctor #savoir si tout est ok
+flutter clean #En développant il y aura des crashs il faut réinitialiser notre application
 
 ----------------Getting start---------------------------------------------------------------------
 >flutter create flutter_app //génère une application représentant un fichier lib
-				//pour le simulateur macos il faut xcode avec le système macos (macbook)
+				//pour le simulateur MACOS il faut xcode avec le système macos (macbook)
 
 Pour IOS:
 open -a simulator (xcode grace au sdk) flutter run //ouvre l'application
+pubspec.yaml pour faire tourner l'application.
+le dossier lib c'est ici l'application.
+Ouvre l'émulateur (barre bleu windows x86/click/puis en haut choisissez par exemple le nexus device)
+puis avec VSCode: open folder #si en bas dans la barre bleu nous n'avons pas nodevice  donc flutter upgrade
+                                  #si c'est winx64
+ouvrir lib/mains.dart #dans le terminal flutter run 
 
+ET VOTRE ENVIRONNEMENT ET FONCTIONNEL!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
